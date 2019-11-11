@@ -1,0 +1,36 @@
+{
+  "name": "simple-ts-express-decorators",
+  "version": "1.0.0",
+  "description": "Simple express decorators for typescript",
+  "main": "dist/index.js",
+  "typings": "types/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint --project tsconfig.json src/**/*.ts",
+    "test": "jest"
+  },
+  "keywords": [
+    "express",
+    "expressjs",
+    "typescript",
+    "ts",
+    "decorators"
+  ],
+  "author": "Andrew",
+  "license": "MIT",
+  "dependencies": {
+    "glob": "^7.1.6",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@types/jest": "^24.0.22",
+    "@types/node": "^12.12.7",
+    "coveralls": "^3.0.7",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.1.0",
+    "tslint": "^5.20.1",
+    "tslint-eslint-rules": "^5.4.0",
+    "typescript": "^3.7.2"
+  }
+}
