@@ -15,6 +15,7 @@
     "noUnusedParameters": false,
     "noUnusedLocals": true,
     "strictNullChecks": true,
+    "declaration": true,
     "declarationDir": "types",
     "outDir": "dist"
   },
