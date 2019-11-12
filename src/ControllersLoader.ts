@@ -1,6 +1,7 @@
 import {Express, Request, Response} from 'express';
 import {importClassesFromDirectories} from './utils/importClassesFromDirectories';
 import {RouteDefinition} from './RouteDefinition';
+import * as path from 'path';
 
 interface Container {
   get(identifier: string | symbol): Function;
@@ -24,7 +25,7 @@ export class ControllersLoader {
       const routes: Array<RouteDefinition> = Reflect.getMetadata('routes', controller);
 
       routes.forEach(route => {
-        app[route.requestMethod](prefix + route.path, (req: Request, res: Response) => {
+        app[route.requestMethod](path.join('/', prefix, route.path), (req: Request, res: Response) => {
           instance[route.methodName](req, res);
         });
       });

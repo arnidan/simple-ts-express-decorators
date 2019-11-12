@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import {Delete, Get, Head, HttpMethods, Method, Patch, Post, Put, RouteDefinition, Trace} from '../src';
 
 const decoratorsMapping = <{[index in HttpMethods]: (path: string) => MethodDecorator}> {

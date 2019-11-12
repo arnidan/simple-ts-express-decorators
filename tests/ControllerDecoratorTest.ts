@@ -1,8 +1,7 @@
-import 'reflect-metadata';
 import {Controller} from '../src';
 
-describe('@Controller decorators test', () => {
-  it('should properly init data', function () {
+describe('@Controller decorator test', () => {
+  it('should properly init data', () => {
     @Controller()
     class Foo {}
 
