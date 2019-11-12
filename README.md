@@ -1,6 +1,7 @@
 # Simple typescript decorators for express
 
 [![Build Status](https://travis-ci.com/arnidan/simple-ts-express-decorators.svg?branch=master)](https://travis-ci.com/arnidan/simple-ts-express-decorators)
+[![Coverage Status](https://coveralls.io/repos/github/arnidan/simple-ts-express-decorators/badge.svg?branch=master)](https://coveralls.io/github/arnidan/simple-ts-express-decorators?branch=master)
 
 Simple controller and methods typescript decorators for express. 
 Inspired by [ts-decorator-routing](https://github.com/nehalist/) 
@@ -53,7 +54,7 @@ export class UsersController {
   
   @Get('/users')
   index(request: Request, response: Response) {
-    response.send([
+    response.json([
       {id: 1, username: 'example'}
     ]);
   }
