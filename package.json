@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@types/express": "4.17.2",
-    "@types/jest": "24.9.1",
+    "@types/jest": "25.1.2",
     "@types/node": "12.12.27",
     "coveralls": "3.0.9",
     "jest": "24.9.0",
