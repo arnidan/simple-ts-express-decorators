@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/arnidan/simple-ts-express-decorators/badge.svg?branch=master)](https://coveralls.io/github/arnidan/simple-ts-express-decorators?branch=master)
 
 Simple controller and methods typescript decorators for express. 
-Inspired by [ts-decorator-routing](https://github.com/nehalist/) 
+Inspired by [ts-decorator-routing](https://github.com/nehalist/ts-decorator-routing) 
 
 Provides pure request and response from express without complicated handlers or transformers. 
 
