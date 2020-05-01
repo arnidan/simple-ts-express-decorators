@@ -3,5 +3,6 @@
     "config:base",
     "schedule:monthly"
   ],
-  "prCreation": "not-pending"
+  "prCreation": "not-pending",
+  "groupName": "all"
 }
