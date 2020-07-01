@@ -28,7 +28,7 @@
     "@types/jest": "25.2.1",
     "@types/node": "^13.13",
     "coveralls": "3.1.0",
-    "jest": "25.5.3",
+    "jest": "25.5.4",
     "ts-jest": "25.4.0",
     "tslint": "5.20.1",
     "tslint-eslint-rules": "5.4.0",
