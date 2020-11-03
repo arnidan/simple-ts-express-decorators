@@ -1,5 +1,6 @@
 # Simple typescript decorators for express
 
+![Build](https://github.com/arnidan/simple-ts-express-decorators/workflows/CI/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/arnidan/simple-ts-express-decorators/badge.svg?branch=master)](https://coveralls.io/github/arnidan/simple-ts-express-decorators?branch=master)
 
 Simple controller and methods typescript decorators for express. 
