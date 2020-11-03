@@ -4,9 +4,9 @@ node_js:
   - node
 
 before_script:
-  - npm install
-  - npm run build
+  - yarn
+  - yarn build
 
 script:
-  - npm run lint
-  - npm run test-coverage
+  - yarn lint
+  - yarn test-coverage
