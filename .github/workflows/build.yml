@@ -13,4 +13,5 @@ jobs:
       - run: yarn build
       - run: yarn lint
       - run: yarn test-coverage
-      - uses: coverallsapp/github-action@v1.1.2
+        env:
+          COVERALLS_REPO_TOKEN: "${{ secrets.COVERALLS_TOKEN }}"
