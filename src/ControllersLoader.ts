@@ -25,13 +25,10 @@ export class ControllersLoader {
       const routes: Array<RouteDefinition> = Reflect.getMetadata('routes', controller);
 
       routes.forEach(route => {
-        app[route.requestMethod](path.join('/', prefix, route.path), async (req: Request, res: Response, next: NextFunction) => {
-          try {
-            await instance[route.methodName](req, res);
-          } catch (e) {
-            next(e);
-          }
-        });
+        app[route.requestMethod](
+          path.join('/', prefix, route.path),
+          (req: Request, res: Response, next: NextFunction) => Promise.resolve(instance[route.methodName](req, res)).catch(next),
+        );
       });
     }
   }
