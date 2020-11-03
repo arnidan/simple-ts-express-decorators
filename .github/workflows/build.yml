@@ -13,4 +13,4 @@ jobs:
       - run: yarn build
       - run: yarn lint
       - run: yarn test-coverage
-      - uses: coverallsapp/github-action@v1
+      - uses: coverallsapp/github-action@v1.1.2
