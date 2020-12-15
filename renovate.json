@@ -4,5 +4,6 @@
     "schedule:monthly"
   ],
   "prCreation": "not-pending",
-  "groupName": "all"
+  "groupName": "all",
+  "rangeStrategy": "bump"
 }
