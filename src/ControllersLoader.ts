@@ -43,7 +43,7 @@ export class ControllersLoader {
   }
 
   protected getControllers(): Function[] {
-    let controllerClasses: Function[] = (this.options.controllers as any[])
+    const controllerClasses: Function[] = (this.options.controllers as any[])
       .filter(controller => controller instanceof Function);
 
     return [
