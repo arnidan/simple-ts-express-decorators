@@ -2,6 +2,9 @@
   "name": "simple-ts-express-decorators",
   "version": "1.2.0-0",
   "description": "Simple express decorators for typescript",
+  "repository": {
+    "url": "https://github.com/arnidan/simple-ts-express-decorators"
+  },
   "main": "dist/index.js",
   "typings": "types/index.d.ts",
   "scripts": {
