@@ -1,7 +1,8 @@
 import {RouteDefinition} from '../RouteDefinition';
 import {HttpMethods} from '../HttpMethods';
+import {RequestHandler} from 'express';
 
-const getMethodFunction = (method: HttpMethods, path: string): MethodDecorator => {
+const getMethodFunction = (method: HttpMethods, path: string, middlewares: RequestHandler[]): MethodDecorator => {
   return (target, propertyKey): void => {
     if (!Reflect.hasMetadata('routes', target.constructor)) {
       Reflect.defineMetadata('routes', [], target.constructor);
@@ -11,46 +12,21 @@ const getMethodFunction = (method: HttpMethods, path: string): MethodDecorator =
 
     routes.push({
       path,
+      middlewares,
       requestMethod: method,
-      methodName: propertyKey
+      methodName: propertyKey,
     });
 
     Reflect.defineMetadata('routes', routes, target.constructor);
   };
 };
 
-export const Options = (path: string): MethodDecorator => {
-  return getMethodFunction(HttpMethods.OPTIONS, path);
-};
-
-export const Get = (path: string): MethodDecorator => {
-  return getMethodFunction(HttpMethods.GET, path);
-};
-
-export const Head = (path: string): MethodDecorator => {
-  return getMethodFunction(HttpMethods.HEAD, path);
-};
-
-export const Post = (path: string): MethodDecorator => {
-  return getMethodFunction(HttpMethods.POST, path);
-};
-
-export const Put = (path: string): MethodDecorator => {
-  return getMethodFunction(HttpMethods.PUT, path);
-};
-
-export const Patch = (path: string): MethodDecorator => {
-  return getMethodFunction(HttpMethods.PATCH, path);
-};
-
-export const Delete = (path: string): MethodDecorator => {
-  return getMethodFunction(HttpMethods.DELETE, path);
-};
-
-export const Trace = (path: string): MethodDecorator => {
-  return getMethodFunction(HttpMethods.TRACE, path);
-};
-
-export const Method = (method: HttpMethods, path: string): MethodDecorator => {
-  return getMethodFunction(method, path);
-};
+export const Options = (path: string, ...middlewares: RequestHandler[]): MethodDecorator => getMethodFunction(HttpMethods.OPTIONS, path, middlewares);
+export const Get = (path: string, ...middlewares: RequestHandler[]): MethodDecorator => getMethodFunction(HttpMethods.GET, path, middlewares);
+export const Head = (path: string, ...middlewares: RequestHandler[]): MethodDecorator => getMethodFunction(HttpMethods.HEAD, path, middlewares);
+export const Post = (path: string, ...middlewares: RequestHandler[]): MethodDecorator => getMethodFunction(HttpMethods.POST, path, middlewares);
+export const Put = (path: string, ...middlewares: RequestHandler[]): MethodDecorator => getMethodFunction(HttpMethods.PUT, path, middlewares);
+export const Patch = (path: string, ...middlewares: RequestHandler[]): MethodDecorator => getMethodFunction(HttpMethods.PATCH, path, middlewares);
+export const Delete = (path: string, ...middlewares: RequestHandler[]): MethodDecorator => getMethodFunction(HttpMethods.DELETE, path, middlewares);
+export const Trace = (path: string, ...middlewares: RequestHandler[]): MethodDecorator => getMethodFunction(HttpMethods.TRACE, path, middlewares);
+export const Method = (method: HttpMethods, path: string, ...middlewares: RequestHandler[]): MethodDecorator => getMethodFunction(method, path, middlewares);

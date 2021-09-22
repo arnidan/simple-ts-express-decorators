@@ -1,4 +1,5 @@
 import {HttpMethods} from './HttpMethods';
+import {RequestHandler} from 'express';
 
 export interface RouteDefinition {
   // Path to our route
@@ -7,4 +8,6 @@ export interface RouteDefinition {
   requestMethod: HttpMethods;
   // Method name within our class responsible for this route
   methodName: string | symbol;
+  // middlewares to execute before method
+  middlewares: RequestHandler[],
 }

@@ -27,6 +27,7 @@ export class ControllersLoader {
       routes.forEach(route => {
         app[route.requestMethod](
           path.join('/', prefix, route.path),
+          ...route.middlewares,
           (req: Request, res: Response, next: NextFunction) => Promise.resolve(instance[route.methodName](req, res)).catch(next),
         );
       });
