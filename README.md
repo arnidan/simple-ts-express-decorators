@@ -48,15 +48,27 @@ Provides pure request and response from express without complicated handlers or 
 ```typescript
 import {Controller, Get} from 'simple-ts-express-decorators'; 
 import {Request, Response} from 'express';
+import multer, {memoryStorage} from 'multer';
+
+const upload = multer({storage: memoryStorage()});
 
 @Controller()
 export class UsersController {
-  
+
   @Get('/users')
   index(request: Request, response: Response) {
     response.json([
       {id: 1, username: 'example'}
     ]);
+  }
+
+  @Post('/users', upload.sindle('avatar')) // example of usage with middleware
+  create(request: Request, response: Response) {
+    const avatar = request.file;
+
+    // ...save
+
+    response.status(201);
   }
 }
 ```

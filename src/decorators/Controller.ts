@@ -1,4 +1,4 @@
-export const Controller = (prefix: string = ''): ClassDecorator => {
+export const Controller = (prefix = ''): ClassDecorator => {
   return (target: any) => {
     Reflect.defineMetadata('prefix', prefix, target);
 

@@ -27,6 +27,7 @@ export class ControllersLoader {
       routes.forEach(route => {
         app[route.requestMethod](
           path.join('/', prefix, route.path),
+          ...route.middlewares,
           (req: Request, res: Response, next: NextFunction) => Promise.resolve(instance[route.methodName](req, res)).catch(next),
         );
       });
@@ -42,7 +43,7 @@ export class ControllersLoader {
   }
 
   protected getControllers(): Function[] {
-    let controllerClasses: Function[] = (this.options.controllers as any[])
+    const controllerClasses: Function[] = (this.options.controllers as any[])
       .filter(controller => controller instanceof Function);
 
     return [

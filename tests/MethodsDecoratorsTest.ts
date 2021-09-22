@@ -1,6 +1,7 @@
 import {Delete, Get, Head, HttpMethods, Method, Patch, Post, Put, RouteDefinition, Trace} from '../src';
+import {RequestHandler} from 'express';
 
-const decoratorsMapping = <{[index in HttpMethods]: (path: string) => MethodDecorator}> {
+const decoratorsMapping = <{[index in HttpMethods]: (path: string, ...middlewares: RequestHandler[]) => MethodDecorator}> {
   [HttpMethods.GET]: Get,
   [HttpMethods.HEAD]: Head,
   [HttpMethods.POST]: Post,
@@ -13,10 +14,13 @@ const decoratorsMapping = <{[index in HttpMethods]: (path: string) => MethodDeco
 for (const method in decoratorsMapping) {
   describe(`@${method[0].toUpperCase() + method.substr(1)} decorator test`, () => {
     const decoratorGetter = decoratorsMapping[method as HttpMethods];
+    const middleware: RequestHandler = function (req, res, next) {
+      next();
+    } ;
 
     it('should properly attach routes', () => {
       class Foo {
-        @decoratorGetter('path')
+        @decoratorGetter('path', middleware)
         public bar() {}
       }
 
@@ -30,6 +34,7 @@ for (const method in decoratorsMapping) {
       expect(routes[0].methodName).toEqual('bar');
       expect(routes[0].path).toEqual('path');
       expect(routes[0].requestMethod).toEqual(method);
+      expect(routes[0].middlewares).toEqual([middleware]);
     });
   });
 }
