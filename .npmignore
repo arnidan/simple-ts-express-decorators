@@ -1,9 +1,10 @@
+.github
 .idea
 src
 tests
 yarn.lock
 .travis.yml
 .gitignore
+.eslintrc.js
 yarn-error.log
 renovate.json
-
