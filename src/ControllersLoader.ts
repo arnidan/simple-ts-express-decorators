@@ -1,4 +1,4 @@
-import {Express, NextFunction, Request, Response} from 'express';
+import {Express, NextFunction, Request, RequestHandler, Response} from 'express';
 import {importClassesFromDirectories} from './utils/importClassesFromDirectories';
 import {RouteDefinition} from './RouteDefinition';
 import * as path from 'path';
@@ -22,11 +22,13 @@ export class ControllersLoader {
       const instance = this.getInstance(controller);
 
       const prefix = Reflect.getMetadata('prefix', controller);
-      const routes: Array<RouteDefinition> = Reflect.getMetadata('routes', controller);
+      const routes: RouteDefinition[] = Reflect.getMetadata('routes', controller);
+      const middlewares: RequestHandler[] = Reflect.getMetadata('middlewares', controller);
 
       routes.forEach(route => {
         app[route.requestMethod](
           path.join('/', prefix, route.path),
+          ...middlewares,
           ...route.middlewares,
           (req: Request, res: Response, next: NextFunction) => Promise.resolve(instance[route.methodName](req, res)).catch(next),
         );
