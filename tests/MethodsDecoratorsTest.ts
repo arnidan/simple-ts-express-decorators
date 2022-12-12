@@ -14,9 +14,7 @@ const decoratorsMapping = <{[index in HttpMethods]: (path: string, ...middleware
 for (const method in decoratorsMapping) {
   describe(`@${method[0].toUpperCase() + method.substr(1)} decorator test`, () => {
     const decoratorGetter = decoratorsMapping[method as HttpMethods];
-    const middleware: RequestHandler = function (req, res, next) {
-      next();
-    } ;
+    const middleware: RequestHandler = (req, res, next) => next();
 
     it('should properly attach routes', () => {
       class Foo {

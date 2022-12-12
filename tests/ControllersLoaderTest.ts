@@ -1,4 +1,5 @@
 import {Controller, ControllersLoader, Get} from '../src';
+import {RequestHandler} from 'express';
 
 describe('ControllersLoader test', () => {
 
@@ -33,6 +34,32 @@ describe('ControllersLoader test', () => {
     expect(getMock).toHaveBeenNthCalledWith(4,'/test/', expect.anything());
   });
 
+  it('should properly add middlewares', () => {
+    const controllerMiddleware: RequestHandler = (req, resp, next) => next();
+    const routeMiddleware: RequestHandler = (req, resp, next) => next();
+
+    @Controller('/', controllerMiddleware)
+    class TestController {
+      @Get('/get', routeMiddleware)
+      test() {}
+
+      @Get('/get2')
+      test2() {}
+    }
+
+    const getMock = jest.fn();
+    const app = {get: getMock};
+
+    new ControllersLoader({
+      controllers: [TestController]
+    }).load(app as any);
+
+    expect(getMock).toHaveBeenCalledTimes(2);
+
+    expect(getMock).toHaveBeenNthCalledWith(1, '/get', controllerMiddleware, routeMiddleware, expect.anything());
+    expect(getMock).toHaveBeenNthCalledWith(2, '/get2', controllerMiddleware, expect.anything());
+  });
+
   it('should properly use container', () => {
     @Controller()
     class Foo {}
@@ -47,5 +74,5 @@ describe('ControllersLoader test', () => {
 
     expect(getMock).toHaveBeenCalledTimes(1);
     expect(getMock).toBeCalledWith(Foo);
-  })
+  });
 });
