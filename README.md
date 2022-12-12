@@ -47,12 +47,18 @@ Provides pure request and response from express without complicated handlers or 
 
 ```typescript
 import {Controller, Get} from 'simple-ts-express-decorators'; 
-import {Request, Response} from 'express';
+import {Request, Response, RequestHandler} from 'express';
 import multer, {memoryStorage} from 'multer';
 
 const upload = multer({storage: memoryStorage()});
 
-@Controller()
+const logMiddleware: RequestHandler = (req, res, next) => {
+  console.log('log');
+
+  next();
+};
+
+@Controller('/', logMiddleware)
 export class UsersController {
 
   @Get('/users')
@@ -92,7 +98,7 @@ app.listen(3000);
 
 ## Configuration options
 
-| Option | Description |
-| --- | --- |
-| controllers | Required. Array of controllers to load or array of glob patterns to load controllers from |
-| container | Any container implementation with `get()` method. For example [InversifyJS](https://github.com/inversify/InversifyJS)
+| Option      | Description                                                                                                           |
+|-------------|-----------------------------------------------------------------------------------------------------------------------|
+| controllers | Required. Array of controllers to load or array of glob patterns to load controllers from                             |
+| container   | Any container implementation with `get()` method. For example [InversifyJS](https://github.com/inversify/InversifyJS) |
