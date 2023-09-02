@@ -1,9 +1,0 @@
-{
-  "extends": [
-    "config:base",
-    "schedule:monthly"
-  ],
-  "prCreation": "not-pending",
-  "groupName": "all",
-  "rangeStrategy": "bump"
-}
