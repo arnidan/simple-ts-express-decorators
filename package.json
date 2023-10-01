@@ -24,7 +24,7 @@
   "author": "Andrew",
   "license": "MIT",
   "dependencies": {
-    "glob": "^8.0.3",
+    "glob": "^10.3.10",
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
