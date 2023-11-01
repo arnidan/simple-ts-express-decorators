@@ -8,7 +8,7 @@ jobs:
     name: Build
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
       - run: yarn
       - run: yarn build
       - run: yarn lint
